@@ -23,12 +23,13 @@
 <body>
 
 <script>
-    // 1. SOUND SYSTEM
-    const audio = new Audio('bark.mp3');
-    function playBark() {
-        audio.play().catch(() => {}); // Browsers block auto-play until you click once
-        setTimeout(playBark, 5000);
-    }
+    // 1. SOUND SYSTEM (Randomized)
+    const speedSounds = [
+        'ishowspeed-barks.mp3', 
+        'ishowspeed-why-this-game-so-fun-chat.mp3', 
+        'bark.mp3'
+    ];
+
 
     // 2. BOUNCING & SHAKING SYSTEM
     function createSpeedBox() {
@@ -36,6 +37,9 @@
         box.className = 'speed-box';
         box.innerHTML = '<h2>BARK BARK BARK SPEED!</h2><img src="speed.jpg">';
         document.body.appendChild(box);
+              
+        const randomSound = speedSounds[Math.floor(Math.random() * speedSounds.length)];
+        new Audio(randomSound).play().catch(() => {});
 
         let x = Math.random() * (window.innerWidth - 250);
         let y = Math.random() * (window.innerHeight - 300);
